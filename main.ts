@@ -125,30 +125,13 @@ function DealCards (numberOfPlayers: number, cardsToDeal: number) {
     for (let index = 0; index <= numberOfPlayers; index++) {
         playersHand = []
         for (let index2 = 0; index2 < cardsToDeal; index2++) {
-            playersHand.push(spriteDeck.removeAt(randint(0, spriteDeck.length - 1)))
-        }
-        for (let index = 0; index <= cardsToDeal; index++) {
-            mySprite2 = sprites.create(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, SpriteKind.Player)
-            mySprite.setPosition(15 + index * mySprite.width, 95)
-            mySprite.setFlag(SpriteFlag.Invisible, false)
+            mySprite2 = playersHand[index]
+            mySprite2.setPosition(15 + index * mySprite.width, 95)
+            mySprite2.setFlag(SpriteFlag.Invisible, false)
+            mySprite.sayText("Card Value:" + sprites.readDataString(mySprite2, "cardValue"))
+            mySprite.sayText("Card Value:" + sprites.readDataNumber(mySprite2, "suitValue"))
             pause(200)
+            playersHand.push(spriteDeck.removeAt(randint(0, spriteDeck.length - 1)))
         }
     }
 }
@@ -190,4 +173,4 @@ for (let SubDeck of deck) {
         spriteDeck.unshift(mySprite)
     }
 }
-DealCards(1, 5)
+DealCards(2, 26)
