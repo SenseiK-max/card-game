@@ -39,68 +39,68 @@ function GenerateDeckOfCards () {
     Three_Array = [
     assets.image`myImage8`,
     assets.image`myImage9`,
-    assets.image`myImage10`,
-    assets.image`myImage11`
+    assets.image`myImage11`,
+    assets.image`myImage10`
     ]
     Four_Array = [
     assets.image`myImage12`,
     assets.image`myImage13`,
-    assets.image`myImage14`,
-    assets.image`myImage15`
+    assets.image`myImage15`,
+    assets.image`myImage14`
     ]
     Five_Array = [
     assets.image`myImage16`,
     assets.image`myImage17`,
-    assets.image`myImage18`,
-    assets.image`myImage19`
+    assets.image`myImage19`,
+    assets.image`myImage18`
     ]
     Six_Array = [
     assets.image`myImage20`,
     assets.image`myImage21`,
-    assets.image`myImage22`,
-    assets.image`myImage23`
+    assets.image`myImage23`,
+    assets.image`myImage22`
     ]
     Seven_Array = [
     assets.image`myImage24`,
     assets.image`myImage25`,
-    assets.image`myImage26`,
-    assets.image`myImage27`
+    assets.image`myImage27`,
+    assets.image`myImage26`
     ]
     Eight_Array = [
     assets.image`myImage36`,
     assets.image`myImage37`,
-    assets.image`myImage38`,
-    assets.image`myImage39`
+    assets.image`myImage39`,
+    assets.image`myImage38`
     ]
     Nine_Array = [
     assets.image`myImage40`,
     assets.image`myImage41`,
-    assets.image`myImage42`,
-    assets.image`myImage43`
+    assets.image`myImage43`,
+    assets.image`myImage42`
     ]
     Ten_Array = [
     assets.image`myImage44`,
     assets.image`myImage45`,
-    assets.image`myImage46`,
-    assets.image`myImage47`
+    assets.image`myImage47`,
+    assets.image`myImage46`
     ]
     Jack_Array = [
     assets.image`myImage48`,
     assets.image`myImage49`,
-    assets.image`myImage50`,
-    assets.image`myImage51`
+    assets.image`myImage51`,
+    assets.image`myImage50`
     ]
     Queen_Array = [
     assets.image`myImage28`,
     assets.image`myImage29`,
-    assets.image`myImage30`,
-    assets.image`myImage31`
+    assets.image`myImage31`,
+    assets.image`myImage30`
     ]
     King_Array = [
     assets.image`myImage35`,
     assets.image`myImage33`,
-    assets.image`myImage32`,
-    assets.image`myImage34`
+    assets.image`myImage34`,
+    assets.image`myImage32`
     ]
     Deck_of_Cards = [
     Ace_Array,
@@ -120,20 +120,39 @@ function GenerateDeckOfCards () {
     return Deck_of_Cards
 }
 function DealCards (numberOfPlayers: number, cardsToDeal: number) {
+    game.splash("Time to play")
     cardsDealt = []
     for (let index = 0; index <= numberOfPlayers; index++) {
         playersHand = []
         for (let index2 = 0; index2 < cardsToDeal; index2++) {
             playersHand.push(spriteDeck.removeAt(randint(0, spriteDeck.length - 1)))
         }
-        for (let value of playersHand) {
-            playerCard = value
+        for (let index = 0; index <= cardsToDeal; index++) {
+            mySprite2 = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Player)
+            mySprite.setPosition(15 + index * mySprite.width, 95)
             mySprite.setFlag(SpriteFlag.Invisible, false)
             pause(200)
         }
     }
 }
-let playerCard: Sprite = null
+let mySprite2: Sprite = null
 let playersHand: Sprite[] = []
 let cardsDealt: number[] = []
 let Deck_of_Cards: Image[][] = []
@@ -163,12 +182,12 @@ scene.setBackgroundColor(9)
 spriteDeck = []
 for (let SubDeck of deck) {
     cardValue = 1
-    for (let value of SubDeck) {
-        mySprite = sprites.create(value, SpriteKind.Card)
+    for (let index = 0; index <= 3; index++) {
+        mySprite = sprites.create(SubDeck[index], SpriteKind.Card)
         sprites.setDataNumber(mySprite, "cardValue", cardValue)
+        sprites.setDataNumber(mySprite, "suitValue", index)
         mySprite.setFlag(SpriteFlag.Invisible, true)
         spriteDeck.unshift(mySprite)
     }
-    cardValue += 1
 }
 DealCards(1, 5)
